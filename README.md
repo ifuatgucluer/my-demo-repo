@@ -32,3 +32,15 @@ python python/loan_prediction_feature_engineered_solution.py \
 ```
 
 The generated submission contains the required `Loan_ID` and `Loan_Status` columns.
+
+## Model Comparison Utility
+
+The repository also includes an independent model comparison script. It evaluates Logistic Regression, Random Forest, and HistGradientBoosting with five-fold stratified cross-validation:
+
+```bash
+python python/loan_prediction_model_comparison.py \
+  --train path/to/train.csv \
+  --report model_comparison_report.csv
+```
+
+The report contains mean and standard deviation for accuracy, mean F1 score, and mean ROC-AUC.
