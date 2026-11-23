@@ -44,3 +44,13 @@ python python/loan_prediction_model_comparison.py \
 ```
 
 The report contains mean and standard deviation for accuracy, mean F1 score, and mean ROC-AUC.
+
+## Data Audit Utility
+
+`loan_prediction_data_audit.py` is a separate data-quality tool. It profiles missing values, duplicate records, target balance, numeric summaries, and categorical frequencies, then writes a Markdown report:
+
+```bash
+python python/loan_prediction_data_audit.py \
+  --train path/to/train.csv \
+  --output loan_prediction_data_audit.md
+```
