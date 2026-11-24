@@ -104,6 +104,22 @@ python python/loan_prediction_error_analysis.py \
 
 This utility evaluates probability thresholds from 0.25 to 0.75, reports accuracy/F1/precision/recall, calculates OOF ROC-AUC, and exports the rows that the validation model classified incorrectly.
 
+## 6. Save and reuse a model for inference
+
+```bash
+pip install joblib
+python python/loan_prediction_inference.py train \
+  --train path/to/train.csv \
+  --model artifacts/loan_model.joblib
+
+python python/loan_prediction_inference.py predict \
+  --model artifacts/loan_model.joblib \
+  --input applicant.json \
+  --output predictions.csv
+```
+
+The inference utility stores the preprocessing pipeline and classifier together, validates required input columns, and adds both `Loan_Status` and `approval_probability` to the output.
+
 ## Reproducibility and responsible use
 
 All examples use fixed random seeds where supported. Cross-validation is used for model comparison, but the final competition score can differ from local validation because the evaluation labels are hidden. This project is for educational and research use; predictions should not be used as the sole basis for real lending or credit decisions. Review fairness, data quality, and applicable regulations before any real-world deployment.
