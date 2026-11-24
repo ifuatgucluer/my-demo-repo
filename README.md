@@ -93,6 +93,17 @@ python python/loan_prediction_feature_engineered_solution.py \
 
 The ensemble adds income, repayment-burden, log-transformed, and categorical-interaction features. It combines XGBoost, LightGBM, and Logistic Regression probabilities and selects a classification threshold from out-of-fold predictions.
 
+## 5. Analyze out-of-fold errors and thresholds
+
+```bash
+python python/loan_prediction_error_analysis.py \
+  --train path/to/train.csv \
+  --report reports/error_analysis_metrics.csv \
+  --errors reports/out_of_fold_errors.csv
+```
+
+This utility evaluates probability thresholds from 0.25 to 0.75, reports accuracy/F1/precision/recall, calculates OOF ROC-AUC, and exports the rows that the validation model classified incorrectly.
+
 ## Reproducibility and responsible use
 
 All examples use fixed random seeds where supported. Cross-validation is used for model comparison, but the final competition score can differ from local validation because the evaluation labels are hidden. This project is for educational and research use; predictions should not be used as the sole basis for real lending or credit decisions. Review fairness, data quality, and applicable regulations before any real-world deployment.
