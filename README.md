@@ -120,6 +120,17 @@ python python/loan_prediction_inference.py predict \
 
 The inference utility stores the preprocessing pipeline and classifier together, validates required input columns, and adds both `Loan_Status` and `approval_probability` to the output.
 
+## 7. Check train/test data drift
+
+```bash
+python python/loan_prediction_drift_check.py \
+  --train path/to/train.csv \
+  --test path/to/test.csv \
+  --output reports/data_drift_report.csv
+```
+
+The utility uses Population Stability Index for numeric columns and category-share differences for categorical columns. Scores are labeled `low`, `medium`, or `high` to help identify distribution changes before training.
+
 ## Reproducibility and responsible use
 
 All examples use fixed random seeds where supported. Cross-validation is used for model comparison, but the final competition score can differ from local validation because the evaluation labels are hidden. This project is for educational and research use; predictions should not be used as the sole basis for real lending or credit decisions. Review fairness, data quality, and applicable regulations before any real-world deployment.
