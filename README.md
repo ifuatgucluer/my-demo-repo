@@ -181,6 +181,20 @@ pytest
 
 The tests cover label normalization, CSV/JSON loading, metric reports, drift calculations, audit charts, leakage-safe preprocessing, threshold analysis, feature engineering, model pipeline construction, and reusable inference predictions. Temporary files are created through pytest fixtures, so the suite does not modify repository data.
 
+### GitHub Actions CI/CD
+
+The workflow in [`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs automatically on every push to `main` and every pull request targeting `main`. It tests Python 3.10, 3.11, and 3.12, installs `requirements-dev.txt`, runs the complete pytest suite, and generates:
+
+- terminal coverage with missing lines,
+- `coverage.xml` for machine-readable reporting, and
+- an `htmlcov/` interactive report.
+
+Coverage files are uploaded as GitHub Actions artifacts for 14 days under a separate artifact for each Python version. The same command can be run locally:
+
+```bash
+pytest --cov=python --cov-branch --cov-report=term-missing --cov-report=xml --cov-report=html
+```
+
 ## Reproducibility and responsible use
 
 All examples use fixed random seeds where supported. Cross-validation is used for model comparison, but the final competition score can differ from local validation because the evaluation labels are hidden. This project is for educational and research use; predictions should not be used as the sole basis for real lending or credit decisions. Review fairness, data quality, and applicable regulations before any real-world deployment.
