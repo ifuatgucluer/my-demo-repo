@@ -1,0 +1,9 @@
+Loan_ID,Gender,Married,Dependents,Education,ApplicantIncome,CoapplicantIncome,LoanAmount,Credit_History,Property_Area
+SAMPLE101,Male,Yes,0,Graduate,8200,1800,190,1.0,Urban
+SAMPLE102,Male,Yes,1,Graduate,7600,1500,170,1.0,Urban
+SAMPLE103,Female,No,0,Graduate,4800,0,105,1.0,Semiurban
+SAMPLE104,Male,Yes,2,Not Graduate,2900,700,115,0.0,Rural
+SAMPLE105,Male,Yes,0,Graduate,6800,2000,160,1.0,Urban
+SAMPLE106,Female,Yes,1,Graduate,4300,600,100,,Semiurban
+SAMPLE107,Male,No,0,Not Graduate,2700,0,75,0.0,Rural
+SAMPLE108,Male,Yes,3,Graduate,5900,1200,145,1.0,Urban

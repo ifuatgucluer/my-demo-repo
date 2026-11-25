@@ -18,10 +18,18 @@ A reproducible machine-learning toolkit for the Analytics Vidhya Loan Prediction
 ```text
 .
 ├── python/
+│   ├── evaluation.py
 │   ├── loan_prediction_data_audit.py
-│   ├── loan_prediction_preprocess.py
+│   ├── loan_prediction_drift_check.py
+│   ├── loan_prediction_error_analysis.py
+│   ├── loan_prediction_inference.py
 │   ├── loan_prediction_model_comparison.py
+│   ├── loan_prediction_preprocess.py
 │   └── loan_prediction_feature_engineered_solution.py
+├── examples/drift_sample/
+│   ├── train.csv
+│   └── test.csv
+├── docs/API.md
 ├── README.md
 ├── pom.xml
 └── deneme.iml
@@ -130,6 +138,32 @@ python python/loan_prediction_drift_check.py \
 ```
 
 The utility uses Population Stability Index for numeric columns and category-share differences for categorical columns. Scores are labeled `low`, `medium`, or `high` to help identify distribution changes before training.
+
+### Run with the included example data
+
+```bash
+python python/loan_prediction_drift_check.py \
+  --train examples/drift_sample/train.csv \
+  --test examples/drift_sample/test.csv \
+  --output reports/example_drift_report.csv
+```
+
+The sample test data intentionally has a somewhat different distribution from the sample training data so that the report demonstrates drift flags. These files are synthetic examples for testing the script, not competition data.
+
+## 8. Evaluate model predictions
+
+```bash
+python python/evaluation.py \
+  --truth validation_truth.csv \
+  --predictions validation_predictions.csv \
+  --output reports/evaluation.json
+```
+
+The evaluation report includes accuracy, precision, recall, F1, confusion matrix, per-class metrics, and ROC-AUC when `approval_probability` is available.
+
+## API and usage documentation
+
+Detailed command-line arguments, output schemas, data contracts, drift thresholds, and examples for every Python script are available in [`docs/API.md`](docs/API.md).
 
 ## Reproducibility and responsible use
 
