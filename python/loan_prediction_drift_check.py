@@ -22,6 +22,11 @@ def psi(expected: pd.Series, actual: pd.Series, bins: int = 10) -> float:
     edges = np.unique(np.nanquantile(expected, np.linspace(0, 1, bins + 1)))
     if len(edges) < 3:
         return 0.0
+    # Include test values outside the training range in the first/last bin.
+    # Without open-ended edges, np.histogram can produce zero total counts for
+    # a completely shifted test distribution and the PSI becomes NaN.
+    edges[0] = -np.inf
+    edges[-1] = np.inf
     expected_counts = np.histogram(expected, bins=edges)[0].astype(float)
     actual_counts = np.histogram(actual, bins=edges)[0].astype(float)
     expected_share = np.clip(expected_counts / expected_counts.sum(), 1e-6, None)

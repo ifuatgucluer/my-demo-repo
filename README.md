@@ -30,6 +30,11 @@ A reproducible machine-learning toolkit for the Analytics Vidhya Loan Prediction
 │   ├── train.csv
 │   └── test.csv
 ├── docs/API.md
+├── tests/
+│   ├── conftest.py
+│   └── test_python_scripts.py
+├── pytest.ini
+├── requirements-dev.txt
 ├── README.md
 ├── pom.xml
 └── deneme.iml
@@ -164,6 +169,17 @@ The evaluation report includes accuracy, precision, recall, F1, confusion matrix
 ## API and usage documentation
 
 Detailed command-line arguments, output schemas, data contracts, drift thresholds, and examples for every Python script are available in [`docs/API.md`](docs/API.md).
+
+## Automated test suite
+
+Install development dependencies and run the complete suite:
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
+
+The tests cover label normalization, CSV/JSON loading, metric reports, drift calculations, audit charts, leakage-safe preprocessing, threshold analysis, feature engineering, model pipeline construction, and reusable inference predictions. Temporary files are created through pytest fixtures, so the suite does not modify repository data.
 
 ## Reproducibility and responsible use
 
