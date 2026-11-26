@@ -108,7 +108,10 @@ def build_report(train: pd.DataFrame, output_path: Path, chart_dir: Path) -> Non
     ).sort_values(["missing_count", "column"], ascending=[False, True])
 
     numeric = train.select_dtypes(include="number")
-    numeric_summary = numeric.describe().T.reset_index().rename(columns={"index": "column"}).round(3)
+    if numeric.empty:
+        numeric_summary = pd.DataFrame(columns=["column"])
+    else:
+        numeric_summary = numeric.describe().T.reset_index().rename(columns={"index": "column"}).round(3)
 
     categorical_sections: list[str] = []
     categorical = train.select_dtypes(exclude="number")

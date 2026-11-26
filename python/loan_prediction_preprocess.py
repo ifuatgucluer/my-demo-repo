@@ -58,7 +58,8 @@ def prepare(train_path: Path, test_path: Path, output_dir: Path) -> None:
         values = sorted(train_features[column].astype(str).unique().tolist())
         category_values[column] = values
         train_features[column] = pd.Categorical(train_features[column], categories=values)
-        test_features[column] = pd.Categorical(test_features[column], categories=values)
+        known = test_features[column].isin(values)
+        test_features[column] = pd.Categorical(test_features[column].where(known), categories=values)
 
     train_encoded = pd.get_dummies(train_features, columns=categorical_columns, dtype=int)
     test_encoded = pd.get_dummies(test_features, columns=categorical_columns, dtype=int)

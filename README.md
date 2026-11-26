@@ -179,7 +179,9 @@ pip install -r requirements-dev.txt
 pytest
 ```
 
-The tests cover label normalization, CSV/JSON loading, metric reports, drift calculations, audit charts, leakage-safe preprocessing, threshold analysis, feature engineering, model pipeline construction, and reusable inference predictions. Temporary files are created through pytest fixtures, so the suite does not modify repository data.
+The tests cover label normalization, CSV/JSON loading, metric reports, drift calculations, audit charts, leakage-safe preprocessing, threshold analysis, feature engineering, model pipeline construction, reusable inference predictions, CLI validation errors, single-class evaluation, unseen categories, constant/missing drift values, and train/predict round trips. Temporary files are created through pytest fixtures, so the suite does not modify repository data.
+
+The repository contains both the core test suite and an additional edge-case suite. Run `pytest` to execute all tests; the suite currently contains 23 tests.
 
 ### GitHub Actions CI/CD
 
